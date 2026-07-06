@@ -3,26 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Dashboard</title>
+    <title>UI Talks 6.0 - Adapt to Grow</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-    <!-- Navbar -->
-    <nav></nav>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">UI TALKS 6.0</a>
+            
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-item active">Home</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#speakers">Speakers</a></li>
+            </ul>
+            
+            <a href="https://forms.gle/XYZ" target="_blank" class="btn-cta-nav">Register Now</a>
+            
+            <button class="menu-toggle" id="mobile-menu-btn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </nav>
 
-    <!-- Main Content Sections -->
-    <main>
-        <section id="hero"></section>
-        <section id="about"></section>
-        <section id="events"></section>
-        <section id="speakers"><!-- Diisi oleh data-render.js --></section>
-        <section id="timeline"><!-- Diisi oleh data-render.js --></section>
-        <section id="register"></section>
-    </main>
+    <div class="mobile-drawer" id="mobile-drawer">
+        <ul class="mobile-nav-links">
+            <li><a href="#home" class="mobile-nav-item">Home</a></li>
+            <li><a href="#events" class="mobile-nav-item">Events</a></li>
+            <li><a href="#speakers" class="mobile-nav-item">Speakers</a></li>
+            <li><a href="https://forms.gle/XYZ" target="_blank" class="mobile-btn-register">Register Now</a></li>
+        </ul>
+    </div>
 
-    <!-- Scripts -->
+    <header id="home" class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <p class="hero-sub">CEDS UI PRESENTS</p>
+            <h1 class="hero-title">UI TALKS 6.0</h1>
+            <p class="hero-tagline">"Adapt to Grow: Empowering Youth Entrepreneurship for a Smarter, Sustainable Society 5.0"</p>
+            
+            <div class="hero-info">
+                <div class="info-item">
+                    <i class="fa-regular fa-calendar-days"></i>
+                    <span>Agustus - September 2026</span>
+                </div>
+                <div class="info-item">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>Universitas Indonesia</span>
+                </div>
+            </div>
+
+            <div class="hero-buttons">
+                <a href="https://forms.gle/XYZ" target="_blank" class="btn-primary">Register Now <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="#events" class="btn-secondary">Explore Events</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="events" class="section-container">
+        <div class="section-header">
+            <h2>Our Sub-Events</h2>
+            <p>Rangkaian program edukatif dan kompetitif UI Talks 6.0</p>
+        </div>
+        
+        <div class="events-grid">
+            <div class="event-card accent-blue">
+                <div class="event-badge">Competition</div>
+                <h3>Business Plan Competition (BPC)</h3>
+                <p>Wadah inovasi bagi entrepreneur muda untuk menyusun strategi bisnis yang sustain di era Society 5.0.</p>
+            </div>
+            
+            <div class="event-card accent-orange">
+                <div class="event-badge">Competition</div>
+                <h3>Business Case Competition (BCC)</h3>
+                <p>Uji kemampuan analisis kritis lo dalam memecahkan masalah riil yang dihadapi oleh perusahaan top lokal.</p>
+            </div>
+            
+            <div class="event-card accent-green">
+                <div class="event-badge">Bootcamp</div>
+                <h3>Talksnovation Bootcamp</h3>
+                <p>Pelatihan intensif 3 hari bersama praktisi industri untuk asah mindset business growth lo.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="speakers" class="section-container bg-light-section">
+        <div class="section-header">
+            <h2>Past Speakers</h2>
+            <p>Para ahli dan praktisi hebat yang telah berbagi ilmu di panggung UI Talks</p>
+        </div>
+        
+        <div id="speaker-container" class="speakers-grid">
+            <div class="loading-text">Memuat data pembicara...</div>
+        </div>
+    </section>
+
+    <section id="timeline" class="section-container">
+    <div class="section-header">
+        <h2>Event Timeline</h2>
+        <p>Catat tanggal pentingnya dan jangan sampai kelewatan tiap rangkaian acaranya!</p>
+    </div>
+
+    <div class="timeline-wrapper">
+        <div id="timeline-container" class="timeline-line">
+            <div class="loading-text">Memuat jadwal acara...</div>
+        </div>
+    </div>
+    </section>
+
     <script src="js/main.js"></script>
-    <script src="js/data-render.js"></script>
 </body>
 </html>
