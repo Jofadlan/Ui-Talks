@@ -1,3 +1,9 @@
+/**
+ * UI Talks 6.0 - Core Scripting
+ * Author: Joe Fadlan Wahid (Jolan)
+ * Build: Vanilla JS + Live Google Sheets Sync
+ * Year: 2026
+ */
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -18,8 +24,10 @@
             
             <ul class="nav-links">
                 <li><a href="#home" class="nav-item active">Home</a></li>
+                <li><a href="#About">About</a></li>
                 <li><a href="#events">Events</a></li>
-                <li><a href="#speakers">Speakers</a></li>
+                <li><a href="#Gallery">Gallery</a></li>
+                <li><a href="#Partners">Partners</a></li>
             </ul>
             
             <a href="https://forms.gle/XYZ" target="_blank" class="btn-cta-nav">Register Now</a>
@@ -33,8 +41,10 @@
     <div class="mobile-drawer" id="mobile-drawer">
         <ul class="mobile-nav-links">
             <li><a href="#home" class="mobile-nav-item">Home</a></li>
+            <li><a href="#About" class="mobile-nav-item">About</a></li>
             <li><a href="#events" class="mobile-nav-item">Events</a></li>
-            <li><a href="#speakers" class="mobile-nav-item">Speakers</a></li>
+            <li><a href="#Gallery" class="mobile-nav-item">Gallery</a></li>
+            <li><a href="#Partners" class="mobile-nav-item">Partners</a></li>
             <li><a href="https://forms.gle/XYZ" target="_blank" class="mobile-btn-register">Register Now</a></li>
         </ul>
     </div>
@@ -114,6 +124,56 @@
         </div>
     </div>
     </section>
+
+    <!-- REGISTER NOW SECTION -->
+    <section id="register" class="section-container" style="text-align: center; background: linear-gradient(180deg, var(--primary-dark) 0%, var(--primary-light) 100%);">
+        <div class="section-header" style="margin-bottom: 2rem;">
+            <h2>Are You Ready to Transform?</h2>
+            <p>Jangan lewatkan kesempatan emas untuk belajar, berkompetisi, dan berjejaring di UI Talks 6.0.</p>
+        </div>
+        <!-- Ganti URL di href dengan link Google Form aslimu nanti -->
+        <a href="https://forms.gle/XYZ" target="_blank" class="btn-primary" style="margin: 0 auto; display: inline-flex; font-size: 1.2rem; padding: 1rem 3rem;">
+            Fill Registration Form <i class="fa-solid fa-paper-plane"></i>
+        </a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <!-- Kolom 1: Logo & Tema -->
+            <div class="footer-col">
+                <h3 class="footer-logo">UI TALKS 6.0</h3>
+                <p>Empowering Youth Entrepreneurship for a Smarter, Sustainable Society 5.0.</p>
+                <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted);">Organized by CEDS UI</p>
+            </div>
+
+            <!-- Kolom 2: Navigasi Cepat -->
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#events">Events</a></li>
+                    <li><a href="#speakers">Speakers</a></li>
+                    <li><a href="#timeline">Timeline</a></li>
+                </ul>
+            </div>
+
+            <!-- Kolom 3: Kontak & Sosmed -->
+            <div class="footer-col">
+                <h4>Connect With Us</h4>
+                <p style="font-size: 0.9rem; margin-bottom: 1rem;"><i class="fa-regular fa-envelope" style="color: var(--accent-gold); margin-right: 0.5rem;"></i> uitalks@ceds.ui.ac.id</p>
+                <div class="footer-socials">
+                    <a href="https://instagram.com/uitalks" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="#" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 UI Talks 6.0. All Rights Reserved.</p>
+        </div>
+    </footer>
 
     <script src="js/main.js"></script>
 </body>

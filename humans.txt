@@ -1,0 +1,12 @@
+/* TEAM */
+Chef Developer: Joe Fadlan Wahid (Jolan)
+Site: https://github.com/Jofadlan
+Instagram: @neverbe_janymore
+Location: Depok, Indonesia
+
+/* THANKS */
+Organization: CEDS UI
+
+/* SITE */
+Standards: HTML5, CSS3, Vanilla JS
+Components: Google Sheets API via CSV Parsing
