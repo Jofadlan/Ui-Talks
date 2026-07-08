@@ -75,6 +75,12 @@ body {
     transition: var(--transition-fast);
 }
 
+.navbar.scrolled {
+    padding: 0.8rem 0;
+    background-color: rgba(6, 44, 34, 0.98);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
 .nav-container {
     max-width: 1200px;
     margin: 0 auto;

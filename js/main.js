@@ -7,15 +7,7 @@
 // 1. FUNGSI NAVBAR SCROLL EFFECT
 function handleNavbarScroll() {
     const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 50) {
-        navbar.style.padding = '0.8rem 0';
-        navbar.style.backgroundColor = 'rgba(6, 44, 34, 0.98)';
-        navbar.style.boxShadow = '0 10px 30px rgba(0,0,0,0.3)';
-    } else {
-        navbar.style.padding = '1.2rem 0';
-        navbar.style.backgroundColor = 'rgba(6, 44, 34, 0.95)';
-        navbar.style.boxShadow = 'none';
-    }
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
 }
 
 // 2. FUNGSI MOBILE MENU DRAWER TOGGLE
@@ -28,11 +20,9 @@ function initMobileMenu() {
         menuBtn.addEventListener('click', () => {
             drawer.classList.toggle('open');
             const icon = menuBtn.querySelector('i');
-            if (drawer.classList.contains('open')) {
-                icon.className = 'fa-solid fa-xmark';
-            } else {
-                icon.className = 'fa-solid fa-bars';
-            }
+            icon.className = drawer.classList.contains('open')
+                ? 'fa-solid fa-xmark'
+                : 'fa-solid fa-bars';
         });
 
         drawerLinks.forEach(link => {
@@ -44,8 +34,8 @@ function initMobileMenu() {
     }
 }
 
-// Jalankan interaksi UI saat halaman selesai dimuat
 document.addEventListener('DOMContentLoaded', () => {
     initMobileMenu();
+    handleNavbarScroll(); // set state awal, jaga-jaga kalau reload di posisi scroll
     window.addEventListener('scroll', handleNavbarScroll);
 });
