@@ -7,6 +7,7 @@
 
 const SPREADSHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRmCoT-NllVz0tti7Xv0lqvg47mYC0NOLbnGASvlzLnm7kCpqinpoRtR8H0xrtJyON7mWag21DPkv7b/pub?gid=0&single=true&output=csv';
 const TIMELINE_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRmCoT-NllVz0tti7Xv0lqvg47mYC0NOLbnGASvlzLnm7kCpqinpoRtR8H0xrtJyON7mWag21DPkv7b/pub?gid=267317411&single=true&output=csv';
+const GALLERY_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRmCoT-NllVz0tti7Xv0lqvg47mYC0NOLbnGASvlzLnm7kCpqinpoRtR8H0xrtJyON7mWag21DPkv7b/pub?gid=1924427979&single=true&output=csv';
 const FALLBACK_IMAGE = 'https://via.placeholder.com/240x280?text=No+Photo';
 
 // Escape teks dari spreadsheet biar aman di-inject ke HTML (anti karakter <, &, dll)
@@ -98,7 +99,40 @@ async function loadGoogleSheetTimeline() {
     }
 }
 
+// 3. FUNGSI FETCH & RENDER GALLERY DARI GOOGLE SHEET (TAB 3)
+async function loadGoogleSheetGallery() {
+    const container = document.getElementById('gallery-container');
+    if (!container) return;
+
+    try {
+        const rows = await fetchCsvRows(GALLERY_CSV_URL);
+
+        const items = rows
+            .filter(cols => cols[0] && cols[0].trim() !== '')
+            .map((cols, index) => {
+                const fotoUrl = cols[0].trim();
+                const keterangan = escapeHtml(cols[1] || '');
+                const kategori = escapeHtml(cols[2] || '');
+
+                return `
+                    <div class="gallery-item" data-kategori="${kategori}">
+                        <img src="${fotoUrl}" alt="${keterangan || 'UI Talks Gallery ' + (index + 1)}" loading="lazy" onerror="this.parentElement.style.display='none'">
+                        ${keterangan ? `<div class="gallery-caption"><p>${keterangan}</p></div>` : ''}
+                    </div>
+                `;
+            });
+
+        container.innerHTML = items.length
+            ? items.join('')
+            : `<div class="loading-text">Belum ada foto galeri.</div>`;
+    } catch (error) {
+        console.error('Error gallery:', error);
+        container.innerHTML = `<div class="loading-text" style="color: #ff5a5f;">Gagal memuat galeri.</div>`;
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     loadGoogleSheetSpeakers();
     loadGoogleSheetTimeline();
+    loadGoogleSheetGallery();
 });
