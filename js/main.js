@@ -68,7 +68,12 @@ function initScrollSpy() {
     sections.forEach(section => observer.observe(section));
 }
 
-// 5. FUNGSI SMOOTH SCROLL TANPA UBAH URL (hilangkan '#' di address bar)
+// 5. FUNGSI SMOOTH SCROLL TANPA UBAH URL + SUPPORT SHARED LINK
+function scrollToSection(targetEl) {
+    if (!targetEl) return;
+    targetEl.scrollIntoView({ behavior: 'smooth' });
+}
+
 function initCleanAnchorScroll() {
     const links = document.querySelectorAll('a[href^="#"]');
 
@@ -79,9 +84,25 @@ function initCleanAnchorScroll() {
             if (!targetEl) return;
 
             e.preventDefault(); // cegah browser nambahin # ke URL
-            targetEl.scrollIntoView({ behavior: 'smooth' });
+            scrollToSection(targetEl);
         });
     });
+}
+
+// Handle kalau user buka link langsung dengan hash (misal dari share link ke #register)
+function handleSharedLinkOnLoad() {
+    if (!window.location.hash) return;
+
+    const targetId = window.location.hash.slice(1);
+    const targetEl = document.getElementById(targetId);
+    if (!targetEl) return;
+
+    // Kasih delay dikit biar layout selesai render dulu (foto, dll) sebelum scroll
+    setTimeout(() => {
+        scrollToSection(targetEl);
+        // Bersihin URL setelah landing, tanpa nambah history entry baru
+        history.replaceState(null, '', window.location.pathname + window.location.search);
+    }, 300);
 }
 
 document.addEventListener('DOMContentLoaded', initMobileMenu);
@@ -90,13 +111,13 @@ document.addEventListener('DOMContentLoaded', () => {
     syncNavbarHeight();
     handleNavbarScroll();
     initScrollSpy();
+    initCleanAnchorScroll();
+    handleSharedLinkOnLoad();
 });
 
 window.addEventListener('scroll', () => {
     handleNavbarScroll();
     syncNavbarHeight();
 });
-
-document.addEventListener('DOMContentLoaded', initCleanAnchorScroll);
 
 window.addEventListener('resize', syncNavbarHeight);
