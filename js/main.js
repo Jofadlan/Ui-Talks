@@ -105,6 +105,25 @@ function handleSharedLinkOnLoad() {
     }, 300);
 }
 
+// 6. FUNGSI SCROLL REVEAL (fade-in section header saat masuk viewport)
+function initScrollReveal() {
+    const targets = document.querySelectorAll('.section-header, .about-text, .vm-card');
+    if (!targets.length) return;
+
+    targets.forEach(el => el.classList.add('reveal'));
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target); // animasi cukup sekali, gak ulang tiap scroll
+            }
+        });
+    }, { threshold: 0.15 });
+
+    targets.forEach(el => observer.observe(el));
+}
+
 document.addEventListener('DOMContentLoaded', initMobileMenu);
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -113,6 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollSpy();
     initCleanAnchorScroll();
     handleSharedLinkOnLoad();
+    initScrollReveal();
 });
 
 window.addEventListener('scroll', () => {

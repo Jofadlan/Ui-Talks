@@ -1,249 +1,386 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
+  <head>
     <!-- UI Talks 6.0 | Author: Joe Fadlan Wahid (Jolan) | Build: Vanilla JS + Google Sheets Sync -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>UI Talks 6.0 - Adapt to Grow</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/favicon.png" />
+    <link rel="apple-touch-icon" href="assets/images/favicon.png" />
 
+    <!-- Open Graph (preview link di WhatsApp, Instagram bio, dll) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="UI Talks 6.0 - Adapt to Grow" />
+    <meta
+      property="og:description"
+      content="Empowering Youth Entrepreneurship for a Smarter, Sustainable Society 5.0. Diselenggarakan oleh CEDS UI."
+    />
+    <meta
+      property="og:image"
+      content="https://https://jofadlan.github.io/Ui-Talks/assets/images/og-thumbnail.jpg"
+    />
+    <meta property="og:url" content="https://https://jofadlan.github.io/Ui-Talks" />
+
+    <!-- Twitter Card (buat platform yang baca format ini juga) -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="UI Talks 6.0 - Adapt to Grow" />
+    <meta
+      name="twitter:description"
+      content="Empowering Youth Entrepreneurship for a Smarter, Sustainable Society 5.0."
+    />
+    <meta
+      name="twitter:image"
+      content="https://https://jofadlan.github.io/Ui-Talks/assets/images/og-thumbnail.jpg"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
     <nav class="navbar">
-        <div class="nav-container">
-            <a href="#" class="nav-logo">
-               <img src="assets/images/logo-uitalks.png" alt="UI Talks 6.0" class="nav-logo-img">
-            </a>
-            
-            <ul class="nav-links">
-                <li><a href="#home" class="nav-item">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#events">Events</a></li>
-                <li><a href="#gallery">Gallery</a></li>
-                <li><a href="#partners">Partners</a></li>
-            </ul>
-            
-            <a href="https://forms.gle/XYZ" target="_blank" class="btn-cta-nav">Register Now</a>
-            
-            <button class="menu-toggle" id="mobile-menu-btn">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-        </div>
+      <div class="nav-container">
+        <a href="#" class="nav-logo">
+          <img
+            src="assets/images/logo-uitalks.png"
+            alt="UI Talks 6.0"
+            class="nav-logo-img"
+          />
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="#home" class="nav-item">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#events">Events</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#partners">Partners</a></li>
+        </ul>
+
+        <a href="https://forms.gle/XYZ" target="_blank" class="btn-cta-nav"
+          >Register Now</a
+        >
+
+        <button class="menu-toggle" id="mobile-menu-btn">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
     </nav>
 
     <div class="mobile-drawer" id="mobile-drawer">
-        <ul class="mobile-nav-links">
-            <li><a href="#home" class="mobile-nav-item">Home</a></li>
-            <li><a href="#about" class="mobile-nav-item">About</a></li>
-            <li><a href="#events" class="mobile-nav-item">Events</a></li>
-            <li><a href="#gallery" class="mobile-nav-item">Gallery</a></li>
-            <li><a href="#partners" class="mobile-nav-item">Partners</a></li>
-            <li><a href="https://forms.gle/XYZ" target="_blank" class="mobile-btn-register">Register Now</a></li>
-        </ul>
+      <ul class="mobile-nav-links">
+        <li><a href="#home" class="mobile-nav-item">Home</a></li>
+        <li><a href="#about" class="mobile-nav-item">About</a></li>
+        <li><a href="#events" class="mobile-nav-item">Events</a></li>
+        <li><a href="#gallery" class="mobile-nav-item">Gallery</a></li>
+        <li><a href="#partners" class="mobile-nav-item">Partners</a></li>
+        <li>
+          <a
+            href="https://forms.gle/XYZ"
+            target="_blank"
+            class="mobile-btn-register"
+            >Register Now</a
+          >
+        </li>
+      </ul>
     </div>
 
     <header id="home" class="hero-section">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <p class="hero-sub">CEDS UI PRESENTS</p>
-            <h1 class="hero-title">UI TALKS 6.0</h1>
-            <p class="hero-tagline">"Adapt to Grow: Empowering Youth Entrepreneurship for a Smarter, Sustainable Society 5.0"</p>
-            
-            <div class="hero-info">
-                <div class="info-item">
-                    <i class="fa-regular fa-calendar-days"></i>
-                    <span>Agustus - September 2026</span>
-                </div>
-                <div class="info-item">
-                    <i class="fa-solid fa-location-dot"></i>
-                    <span>Universitas Indonesia</span>
-                </div>
-            </div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <p class="hero-sub">CEDS UI PRESENTS</p>
+        <h1 class="hero-title">UI TALKS 6.0</h1>
+        <p class="hero-tagline">
+          "Adapt to Grow: Empowering Youth Entrepreneurship for a Smarter,
+          Sustainable Society 5.0"
+        </p>
 
-            <div class="hero-buttons">
-                <a href="https://forms.gle/XYZ" target="_blank" class="btn-primary">Register Now <i class="fa-solid fa-arrow-right"></i></a>
-                <a href="#events" class="btn-secondary">Explore Events</a>
-            </div>
+        <div class="hero-info">
+          <div class="info-item">
+            <i class="fa-regular fa-calendar-days"></i>
+            <span>Agustus - September 2026</span>
+          </div>
+          <div class="info-item">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>Universitas Indonesia</span>
+          </div>
         </div>
+
+        <div class="hero-buttons">
+          <a href="https://forms.gle/XYZ" target="_blank" class="btn-primary"
+            >Register Now <i class="fa-solid fa-arrow-right"></i
+          ></a>
+          <a href="#events" class="btn-secondary">Explore Events</a>
+        </div>
+      </div>
     </header>
 
     <section id="about" class="section-container">
-        <div class="about-grid">
-            <div class="about-image">
-                <img src="" alt="UI Talks 6.0">
-            </div>
-        <div class="about-text">
-            <p class="about-label">About</p>
-            <h2>About UI Talks</h2>
-            <p>UI Talks merupakan program unggulan di bawah naungan CEDS UI yang bertujuan untuk mendukung terwujudnya ide serta pengembangan bisnis mahasiswa di seluruh Indonesia. UI Talks 6.0 hadir sebagai platform yang mengintegrasikan edukasi, kompetisi, networking, dan pengalaman langsung guna mempersiapkan generasi muda menghadapi tantangan dunia bisnis yang terus berkembang.</p>
+      <div class="about-grid">
+        <div class="about-image">
+          <img src="" alt="UI Talks 6.0" />
         </div>
-    </div>
+        <div class="about-text">
+          <p class="about-label">About</p>
+          <h2>About UI Talks</h2>
+          <p>
+            UI Talks merupakan program unggulan di bawah naungan CEDS UI yang
+            bertujuan untuk mendukung terwujudnya ide serta pengembangan bisnis
+            mahasiswa di seluruh Indonesia. UI Talks 6.0 hadir sebagai platform
+            yang mengintegrasikan edukasi, kompetisi, networking, dan pengalaman
+            langsung guna mempersiapkan generasi muda menghadapi tantangan dunia
+            bisnis yang terus berkembang.
+          </p>
+        </div>
+      </div>
 
-    <div class="vision-mission-wrapper">
+      <div class="vision-mission-wrapper">
         <p class="section-label-center">Vision & Mission</p>
-        
+
         <div class="vm-card vm-vision">
-            <h3>Vision</h3>
-            <p>Terwujudnya UI Talks 6.0 sebagai wadah untuk mendorong minat kewirausahaan generasi muda dalam menciptakan solusi bisnis yang adaptif, cerdas, dan relevan dengan dinamika Society 5.0 serta berorientasi pada keberlanjutan.</p>
+          <h3>Vision</h3>
+          <p>
+            Terwujudnya UI Talks 6.0 sebagai wadah untuk mendorong minat
+            kewirausahaan generasi muda dalam menciptakan solusi bisnis yang
+            adaptif, cerdas, dan relevan dengan dinamika Society 5.0 serta
+            berorientasi pada keberlanjutan.
+          </p>
         </div>
 
         <div class="vm-card vm-mission">
-            <h3>Mission</h3>
-            <ul>
-                <li>Menyediakan wadah pembelajaran yang interaktif dan relevan untuk meningkatkan pemahaman generasi muda mengenai kewirausahaan di era Society 5.0</li>
-                <li>Mendorong pengembangan pola pikir kritis serta melahirkan gagasan bisnis yang adaptif melalui rangkaian kegiatan edukatif, kolaboratif, dan kompetitif</li>
-                <li>Membekali peserta dengan pengetahuan dan keterampilan praktis dalam merancang serta mengembangkan bisnis</li>
-            </ul>
+          <h3>Mission</h3>
+          <ul>
+            <li>
+              Menyediakan wadah pembelajaran yang interaktif dan relevan untuk
+              meningkatkan pemahaman generasi muda mengenai kewirausahaan di era
+              Society 5.0
+            </li>
+            <li>
+              Mendorong pengembangan pola pikir kritis serta melahirkan gagasan
+              bisnis yang adaptif melalui rangkaian kegiatan edukatif,
+              kolaboratif, dan kompetitif
+            </li>
+            <li>
+              Membekali peserta dengan pengetahuan dan keterampilan praktis
+              dalam merancang serta mengembangkan bisnis
+            </li>
+          </ul>
         </div>
-        
+
         <div class="vm-card vm-theme">
-            <h3>Grand Theme</h3>
-            <p>"Adapt to Grow: Empowering Youth Entrepreneurship for a Smarter, Sustainable Society 5.0"</p>
+          <h3>Grand Theme</h3>
+          <p>
+            "Adapt to Grow: Empowering Youth Entrepreneurship for a Smarter,
+            Sustainable Society 5.0"
+          </p>
         </div>
-    </div>
-</section>
+      </div>
+    </section>
 
     <section id="events" class="section-container">
-        <div class="section-header">
-            <h2>Our Sub-Events</h2>
-            <p>Rangkaian program edukatif dan kompetitif UI Talks 6.0</p>
+      <div class="section-header">
+        <h2>Our Sub-Events</h2>
+        <p>Rangkaian program edukatif dan kompetitif UI Talks 6.0</p>
+      </div>
+
+      <div class="events-grid">
+        <div class="event-card accent-blue">
+          <div class="event-badge">Competition</div>
+          <h3>Business Plan Competition (BPC)</h3>
+          <p>
+            Wadah inovasi bagi entrepreneur muda untuk menyusun strategi bisnis
+            yang sustain di era Society 5.0.
+          </p>
         </div>
-        
-        <div class="events-grid">
-            <div class="event-card accent-blue">
-                <div class="event-badge">Competition</div>
-                <h3>Business Plan Competition (BPC)</h3>
-                <p>Wadah inovasi bagi entrepreneur muda untuk menyusun strategi bisnis yang sustain di era Society 5.0.</p>
-            </div>
-            
-            <div class="event-card accent-orange">
-                <div class="event-badge">Competition</div>
-                <h3>Business Case Competition (BCC)</h3>
-                <p>Uji kemampuan analisis kritis lo dalam memecahkan masalah riil yang dihadapi oleh perusahaan top lokal.</p>
-            </div>
-            
-            <div class="event-card accent-green">
-                <div class="event-badge">Bootcamp</div>
-                <h3>Talksnovation Bootcamp</h3>
-                <p>Pelatihan intensif 3 hari bersama praktisi industri untuk asah mindset business growth lo.</p>
-            </div>
+
+        <div class="event-card accent-orange">
+          <div class="event-badge">Competition</div>
+          <h3>Business Case Competition (BCC)</h3>
+          <p>
+            Uji kemampuan analisis kritis lo dalam memecahkan masalah riil yang
+            dihadapi oleh perusahaan top lokal.
+          </p>
         </div>
+
+        <div class="event-card accent-green">
+          <div class="event-badge">Bootcamp</div>
+          <h3>Talksnovation Bootcamp</h3>
+          <p>
+            Pelatihan intensif 3 hari bersama praktisi industri untuk asah
+            mindset business growth lo.
+          </p>
+        </div>
+      </div>
     </section>
 
     <section id="speakers" class="section-container bg-light-section">
-        <div class="section-header">
-            <h2>Past Speakers</h2>
-            <p>Para ahli dan praktisi hebat yang telah berbagi ilmu di panggung UI Talks</p>
-        </div>
-        
-        <div id="speaker-container" class="speakers-grid">
-            <div class="loading-text">Memuat data pembicara...</div>
-        </div>
+      <div class="section-header">
+        <h2>Past Speakers</h2>
+        <p>
+          Para ahli dan praktisi hebat yang telah berbagi ilmu di panggung UI
+          Talks
+        </p>
+      </div>
+
+      <div id="speaker-container" class="speakers-grid">
+        <div class="loading-text">Memuat data pembicara...</div>
+      </div>
     </section>
 
     <section id="gallery" class="section-container">
-    <div class="section-header">
+      <div class="section-header">
         <h2>Gallery</h2>
         <p>Momen-momen dari rangkaian UI Talks 6.0</p>
-    </div>
+      </div>
 
-    <div id="gallery-container" class="gallery-grid">
+      <div id="gallery-container" class="gallery-grid">
         <div class="loading-text">Memuat galeri...</div>
-    </div>
-</section>
-
-    <section id="partners" class="section-container bg-light-section">
-    <div class="section-header">
-        <h2>Our Partners</h2>
-        <p>Didukung oleh berbagai instansi dan mitra media terpercaya</p>
-    </div>
-
-    <div class="partners-group">
-        <p class="partners-label">Sponsors</p>
-        <div class="partners-grid">
-            <img src="assets/images/sponsors/sponsor-1.png" alt="Sponsor 1">
-            <img src="assets/images/sponsors/sponsor-2.png" alt="Sponsor 2">
-            <!-- tambah <img> lagi sesuai jumlah sponsor -->
-        </div>
-    </div>
-
-    <div class="partners-group">
-        <p class="partners-label">Media & Community Partners</p>
-        <div class="partners-grid">
-            <img src="assets/images/partners/partner-1.png" alt="Partner 1">
-            <img src="assets/images/partners/partner-2.png" alt="Partner 2">
-            <!-- tambah <img> lagi sesuai jumlah partner -->
-        </div>
-    </div>
-</section>
-
-    <section id="timeline" class="section-container">
-    <div class="section-header">
-        <h2>Event Timeline</h2>
-        <p>Catat tanggal pentingnya dan jangan sampai kelewatan tiap rangkaian acaranya!</p>
-    </div>
-
-    <div class="timeline-wrapper">
-        <div id="timeline-container" class="timeline-line">
-            <div class="loading-text">Memuat jadwal acara...</div>
-        </div>
-    </div>
+      </div>
     </section>
 
-    <section id="register" class="section-container" style="text-align: center; background: linear-gradient(180deg, var(--primary-dark) 0%, var(--primary-light) 100%);">
-        <div class="section-header" style="margin-bottom: 2rem;">
-            <h2>Are You Ready to Transform?</h2>
-            <p>Jangan lewatkan kesempatan emas untuk belajar, berkompetisi, dan berjejaring di UI Talks 6.0.</p>
+    <section id="partners" class="section-container bg-light-section">
+      <div class="section-header">
+        <h2>Our Partners</h2>
+        <p>Didukung oleh berbagai instansi dan mitra media terpercaya</p>
+      </div>
+
+      <div class="partners-group">
+        <p class="partners-label">Sponsors</p>
+        <div class="partners-grid">
+          <img src="assets/images/sponsors/sponsor-1.png" alt="Sponsor 1" />
+          <img src="assets/images/sponsors/sponsor-2.png" alt="Sponsor 2" />
+          <!-- tambah <img> lagi sesuai jumlah sponsor -->
         </div>
-        <!-- Ganti URL di href dengan link Google Form aslimu nanti -->
-        <a href="https://forms.gle/XYZ" target="_blank" class="btn-primary" style="margin: 0 auto; display: inline-flex; font-size: 1.2rem; padding: 1rem 3rem;">
-            Fill Registration Form <i class="fa-solid fa-paper-plane"></i>
-        </a>
+      </div>
+
+      <div class="partners-group">
+        <p class="partners-label">Media & Community Partners</p>
+        <div class="partners-grid">
+          <img src="assets/images/partners/partner-1.png" alt="Partner 1" />
+          <img src="assets/images/partners/partner-2.png" alt="Partner 2" />
+          <!-- tambah <img> lagi sesuai jumlah partner -->
+        </div>
+      </div>
+    </section>
+
+    <section id="timeline" class="section-container">
+      <div class="section-header">
+        <h2>Event Timeline</h2>
+        <p>
+          Catat tanggal pentingnya dan jangan sampai kelewatan tiap rangkaian
+          acaranya!
+        </p>
+      </div>
+
+      <div class="timeline-wrapper">
+        <div id="timeline-container" class="timeline-line">
+          <div class="loading-text">Memuat jadwal acara...</div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="register"
+      class="section-container"
+      style="
+        text-align: center;
+        background: linear-gradient(
+          180deg,
+          var(--primary-dark) 0%,
+          var(--primary-light) 100%
+        );
+      "
+    >
+      <div class="section-header" style="margin-bottom: 2rem">
+        <h2>Are You Ready to Transform?</h2>
+        <p>
+          Jangan lewatkan kesempatan emas untuk belajar, berkompetisi, dan
+          berjejaring di UI Talks 6.0.
+        </p>
+      </div>
+      <!-- Ganti URL di href dengan link Google Form aslimu nanti -->
+      <a
+        href="https://forms.gle/XYZ"
+        target="_blank"
+        class="btn-primary"
+        style="
+          margin: 0 auto;
+          display: inline-flex;
+          font-size: 1.2rem;
+          padding: 1rem 3rem;
+        "
+      >
+        Fill Registration Form <i class="fa-solid fa-paper-plane"></i>
+      </a>
     </section>
 
     <footer class="main-footer">
-        <div class="footer-container">
-            <!-- Kolom 1: Logo & Tema -->
-            <div class="footer-col">
-                <h3 class="footer-logo">UI TALKS 6.0</h3>
-                <p>Empowering Youth Entrepreneurship for a Smarter, Sustainable Society 5.0.</p>
-                <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted);">Organized by CEDS UI</p>
-            </div>
-
-            <!-- Kolom 2: Navigasi Cepat -->
-            <div class="footer-col">
-                <h4>Quick Links</h4>
-                <ul class="footer-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#events">Events</a></li>
-                    <li><a href="#speakers">Speakers</a></li>
-                    <li><a href="#timeline">Timeline</a></li>
-                </ul>
-            </div>
-
-            <!-- Kolom 3: Kontak & Sosmed -->
-            <div class="footer-col">
-                <h4>Connect With Us</h4>
-                <p style="font-size: 0.9rem; margin-bottom: 1rem;"><i class="fa-regular fa-envelope" style="color: var(--accent-gold); margin-right: 0.5rem;"></i> uitalks@ceds.ui.ac.id</p>
-                <div class="footer-socials">
-                    <a href="https://instagram.com/uitalks" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="#" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
-                </div>
-            </div>
+      <div class="footer-container">
+        <!-- Kolom 1: Logo & Tema -->
+        <div class="footer-col">
+          <h3 class="footer-logo">UI TALKS 6.0</h3>
+          <p>
+            Empowering Youth Entrepreneurship for a Smarter, Sustainable Society
+            5.0.
+          </p>
+          <p
+            style="
+              margin-top: 1rem;
+              font-size: 0.85rem;
+              color: var(--text-muted);
+            "
+          >
+            Organized by CEDS UI
+          </p>
         </div>
-        
-        <div class="footer-bottom">
-            <p>&copy; 2026 UI Talks 6.0. All Rights Reserved.</p>
+
+        <!-- Kolom 2: Navigasi Cepat -->
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#speakers">Speakers</a></li>
+            <li><a href="#timeline">Timeline</a></li>
+          </ul>
         </div>
+
+        <!-- Kolom 3: Kontak & Sosmed -->
+        <div class="footer-col">
+          <h4>Connect With Us</h4>
+          <p style="font-size: 0.9rem; margin-bottom: 1rem">
+            <i
+              class="fa-regular fa-envelope"
+              style="color: var(--accent-gold); margin-right: 0.5rem"
+            ></i>
+            uitalks@ceds.ui.ac.id
+          </p>
+          <div class="footer-socials">
+            <a href="https://instagram.com/uitalks" target="_blank"
+              ><i class="fa-brands fa-instagram"></i
+            ></a>
+            <a href="#" target="_blank"
+              ><i class="fa-brands fa-linkedin"></i
+            ></a>
+            <a href="#" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 UI Talks 6.0. All Rights Reserved.</p>
+      </div>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/data-render.js"></script>
-</body>
+  </body>
 </html>
