@@ -42,17 +42,61 @@ function syncNavbarHeight() {
     document.documentElement.style.setProperty('--navbar-height', `${navbar.offsetHeight}px`);
 }
 
-// Tiap fitur punya listener sendiri -> kalau 1 error, yang lain tetap jalan
+// 4. FUNGSI SCROLLSPY (highlight nav sesuai section yang lagi keliatan)
+function initScrollSpy() {
+    const sections = document.querySelectorAll('section[id], header[id]');
+    const navLinks = document.querySelectorAll('.nav-links a[href^="#"], .mobile-nav-links a[href^="#"]');
+    if (!sections.length || !navLinks.length) return;
+
+    const navbar = document.querySelector('.navbar');
+    const navHeight = navbar ? navbar.offsetHeight : 76;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                navLinks.forEach(link => {
+                    link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+                });
+            }
+        });
+    }, {
+        rootMargin: `-${navHeight}px 0px -60% 0px`,
+        threshold: 0
+    });
+
+    sections.forEach(section => observer.observe(section));
+}
+
+// 5. FUNGSI SMOOTH SCROLL TANPA UBAH URL (hilangkan '#' di address bar)
+function initCleanAnchorScroll() {
+    const links = document.querySelectorAll('a[href^="#"]');
+
+    links.forEach(link => {
+        link.addEventListener('click', (e) => {
+            const targetId = link.getAttribute('href').slice(1);
+            const targetEl = document.getElementById(targetId);
+            if (!targetEl) return;
+
+            e.preventDefault(); // cegah browser nambahin # ke URL
+            targetEl.scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+}
+
 document.addEventListener('DOMContentLoaded', initMobileMenu);
 
 document.addEventListener('DOMContentLoaded', () => {
     syncNavbarHeight();
     handleNavbarScroll();
+    initScrollSpy();
 });
 
 window.addEventListener('scroll', () => {
     handleNavbarScroll();
     syncNavbarHeight();
 });
+
+document.addEventListener('DOMContentLoaded', initCleanAnchorScroll);
 
 window.addEventListener('resize', syncNavbarHeight);
