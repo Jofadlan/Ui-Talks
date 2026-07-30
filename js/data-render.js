@@ -17,6 +17,11 @@ function escapeHtml(str) {
     return div.innerHTML;
 }
 
+// Skeleton loader
+function showSkeleton(container, count, className) {
+    container.innerHTML = Array(count).fill(`<div class="skeleton ${className}"></div>`).join('');
+}
+
 // Helper generik: fetch CSV -> parsed rows (pakai PapaParse, jadi aman walau ada koma di dalam data)
 async function fetchCsvRows(url) {
     const response = await fetch(url);
@@ -30,6 +35,8 @@ async function fetchCsvRows(url) {
 async function loadGoogleSheetSpeakers() {
     const container = document.getElementById('speaker-container');
     if (!container) return;
+
+    showSkeleton(container, 4, 'skeleton-card');
 
     try {
         const rows = await fetchCsvRows(SPREADSHEET_CSV_URL);
@@ -68,6 +75,8 @@ async function loadGoogleSheetTimeline() {
     const container = document.getElementById('timeline-container');
     if (!container) return;
 
+    showSkeleton(container, 3, 'skeleton-timeline');
+
     try {
         const rows = await fetchCsvRows(TIMELINE_CSV_URL);
 
@@ -103,6 +112,7 @@ async function loadGoogleSheetTimeline() {
 async function loadGoogleSheetGallery() {
     const container = document.getElementById('gallery-container');
     if (!container) return;
+    showSkeleton(container, 6, 'skeleton-gallery');
 
     try {
         const rows = await fetchCsvRows(GALLERY_CSV_URL);
