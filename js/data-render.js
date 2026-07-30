@@ -6,7 +6,7 @@
  */
 
 const SPREADSHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRmCoT-NllVz0tti7Xv0lqvg47mYC0NOLbnGASvlzLnm7kCpqinpoRtR8H0xrtJyON7mWag21DPkv7b/pub?gid=0&single=true&output=csv';
-const TIMELINE_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRmCoT-NllVz0tti7Xv0lqvg47mYC0NOLbnGASvlzLnm7kCpqinpoRtR8H0xrtJyON7mWag21DPkv7b/pub?gid=267317411&single=true&output=csv';
+const EVENTS_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRmCoT-NllVz0tti7Xv0lqvg47mYC0NOLbnGASvlzLnm7kCpqinpoRtR8H0xrtJyON7mWag21DPkv7b/pub?gid=163766779&single=true&output=csv';
 const GALLERY_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRmCoT-NllVz0tti7Xv0lqvg47mYC0NOLbnGASvlzLnm7kCpqinpoRtR8H0xrtJyON7mWag21DPkv7b/pub?gid=1924427979&single=true&output=csv';
 const FALLBACK_IMAGE = 'https://via.placeholder.com/240x280?text=No+Photo';
 
@@ -15,11 +15,6 @@ function escapeHtml(str) {
     const div = document.createElement('div');
     div.textContent = str ?? '';
     return div.innerHTML;
-}
-
-// Skeleton loader
-function showSkeleton(container, count, className) {
-    container.innerHTML = Array(count).fill(`<div class="skeleton ${className}"></div>`).join('');
 }
 
 // Helper generik: fetch CSV -> parsed rows (pakai PapaParse, jadi aman walau ada koma di dalam data)
@@ -35,8 +30,6 @@ async function fetchCsvRows(url) {
 async function loadGoogleSheetSpeakers() {
     const container = document.getElementById('speaker-container');
     if (!container) return;
-
-    showSkeleton(container, 4, 'skeleton-card');
 
     try {
         const rows = await fetchCsvRows(SPREADSHEET_CSV_URL);
@@ -70,49 +63,48 @@ async function loadGoogleSheetSpeakers() {
     }
 }
 
-// 2. FUNGSI FETCH & RENDER TIMELINE DARI GOOGLE SHEET (TAB 2)
-async function loadGoogleSheetTimeline() {
-    const container = document.getElementById('timeline-container');
+// 2. FUNGSI FETCH & RENDER EVENTS DARI GOOGLE SHEET
+// Kolom: [0] Nama, [1] Deskripsi, [2] Badge Tanggal, [3] Foto URL, [4] Accent (opsional)
+async function loadGoogleSheetEvents() {
+    const container = document.getElementById('events-container');
     if (!container) return;
 
-    showSkeleton(container, 3, 'skeleton-timeline');
-
     try {
-        const rows = await fetchCsvRows(TIMELINE_CSV_URL);
+        const rows = await fetchCsvRows(EVENTS_CSV_URL);
 
-        const items = rows
+        const cards = rows
             .filter(cols => cols[0] && cols[0].trim() !== '')
             .map(cols => {
-                const tanggal = escapeHtml(cols[0]);
-                const namaAgenda = escapeHtml(cols[1]);
-                const deskripsi = escapeHtml(cols[2]);
+                const nama = escapeHtml(cols[0]);
+                const deskripsi = escapeHtml(cols[1]);
+                const badge = escapeHtml(cols[2]);
+                const fotoUrl = cols[3] && cols[3].trim() !== '' ? cols[3].trim() : FALLBACK_IMAGE;
+                const accentRaw = (cols[4] || '').trim().toLowerCase();
+                const accentClass = ['blue', 'orange', 'green'].includes(accentRaw) ? `accent-${accentRaw}` : '';
 
                 return `
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-date">${tanggal}</div>
-                        <div class="timeline-content">
-                            <h3>${namaAgenda}</h3>
-                            <p>${deskripsi}</p>
-                        </div>
+                    <div class="event-card ${accentClass}">
+                        <img src="${fotoUrl}" alt="${nama}" loading="lazy" style="width:100%; height:auto; border-radius:8px; margin-bottom:1.2rem;" onerror="this.src='${FALLBACK_IMAGE}'">
+                        <div class="event-badge"><i class="fa-regular fa-calendar-days"></i> ${badge}</div>
+                        <h3>${nama}</h3>
+                        <p>${deskripsi}</p>
                     </div>
                 `;
             });
 
-        container.innerHTML = items.length
-            ? items.join('')
-            : `<div class="loading-text">Belum ada jadwal acara.</div>`;
+        container.innerHTML = cards.length
+            ? cards.join('')
+            : `<div class="loading-text">Belum ada data event.</div>`;
     } catch (error) {
-        console.error('Error timeline:', error);
-        container.innerHTML = `<div class="loading-text" style="color: #ff5a5f;">Gagal memuat jadwal acara.</div>`;
+        console.error('Error fetching events:', error);
+        container.innerHTML = `<div class="loading-text" style="color: #ff5a5f;">Gagal memuat data event.</div>`;
     }
 }
 
-// 3. FUNGSI FETCH & RENDER GALLERY DARI GOOGLE SHEET (TAB 3)
+// 3. FUNGSI FETCH & RENDER GALLERY / MEMORIES DARI GOOGLE SHEET
 async function loadGoogleSheetGallery() {
     const container = document.getElementById('gallery-container');
     if (!container) return;
-    showSkeleton(container, 6, 'skeleton-gallery');
 
     try {
         const rows = await fetchCsvRows(GALLERY_CSV_URL);
@@ -122,12 +114,10 @@ async function loadGoogleSheetGallery() {
             .map((cols, index) => {
                 const fotoUrl = cols[0].trim();
                 const keterangan = escapeHtml(cols[1] || '');
-                const kategori = escapeHtml(cols[2] || '');
 
                 return `
-                    <div class="gallery-item" data-kategori="${kategori}">
-                        <img src="${fotoUrl}" alt="${keterangan || 'UI Talks Gallery ' + (index + 1)}" loading="lazy" onerror="this.parentElement.style.display='none'">
-                        ${keterangan ? `<div class="gallery-caption"><p>${keterangan}</p></div>` : ''}
+                    <div class="memory-item">
+                        <img src="${fotoUrl}" alt="${keterangan || 'UI Talks Memory ' + (index + 1)}" loading="lazy" onerror="this.parentElement.style.display='none'">
                     </div>
                 `;
             });
@@ -143,6 +133,6 @@ async function loadGoogleSheetGallery() {
 
 document.addEventListener('DOMContentLoaded', () => {
     loadGoogleSheetSpeakers();
-    loadGoogleSheetTimeline();
+    loadGoogleSheetEvents();
     loadGoogleSheetGallery();
 });
