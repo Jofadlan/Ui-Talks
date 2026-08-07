@@ -524,7 +524,7 @@ section[id], header[id] {
     padding: 2rem;
 }
 
-/* GALLERY GRID SECTION */
+/* GALLERY GRID SECTION
 .gallery-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -571,7 +571,7 @@ section[id], header[id] {
     color: var(--text-white);
     font-size: 0.85rem;
     margin: 0;
-}
+} */
 
 /* PARTNERS / SPONSORS SECTION */
 .partners-group {

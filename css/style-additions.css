@@ -1,28 +1,39 @@
 /* ====== TAMBAHAN: MEMORIES COLLAGE (organic, bukan lingkaran presisi) ====== */
-.memories-collage {
-    columns: 4 220px;
-    column-gap: 1.2rem;
+.memories-inner {
+    display: grid;
+    grid-template-columns: 1fr 2.3fr;
+    gap: 2.5rem;
+    align-items: center;
 }
-.memory-item {
-    break-inside: avoid;
-    margin-bottom: 1.2rem;
-    border-radius: 14px;
-    overflow: hidden;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-}
-.memory-item:nth-child(3n+1) { transform: translateY(10px); }
-.memory-item:nth-child(3n+2) { transform: translateY(-6px); }
-.memory-item img {
-    width: 100%;
-    height: auto;
-    display: block;
-    transition: var(--transition-fast);
-}
-.memory-item:hover img { transform: scale(1.04); }
+.memories-text h2 { font-size: 2.3rem; margin-bottom: 0.3rem; }
+.mem-line { display:block; width:40px; height:3px; background:var(--accent-gold); margin:1rem 0 1.2rem; }
+.memories-text p { color: var(--text-muted); margin-bottom: 0.8rem; }
 
-@media (max-width: 768px) {
-    .memories-collage { columns: 2 160px; }
-    .memory-item:nth-child(n) { transform: none; }
+.memories-grid { display: flex; flex-direction: column; gap: 0.6rem; }
+
+.mem-top-row {
+    display: grid;
+    grid-template-columns: 1.4fr 1.4fr 1fr;
+    gap: 0.6rem;
+}
+.mem-top-row .memory-item { min-height: 220px; }
+
+.mem-bottom-row {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 0.6rem;
+}
+.mem-bottom-row .memory-item { min-height: 160px; }
+
+.memory-item { border-radius: 8px; overflow: hidden; }
+.memory-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+@media (max-width: 900px) {
+    .memories-inner { grid-template-columns: 1fr; }
+    .memories-text, .memories-text * { text-align: center; }
+    .mem-line { margin: 1rem auto 1.2rem; }
+    .mem-top-row, .mem-bottom-row { grid-template-columns: repeat(2, 1fr); }
+    .mem-top-row .memory-item, .mem-bottom-row .memory-item { min-height: 140px; }
 }
 
 /* ====== TAMBAHAN: MISSION COLLAGE (mengikuti desain DCC) ====== */
@@ -97,3 +108,8 @@
     filter: none;
     opacity: 1;
 }
+
+.section-container { padding: 7rem 2rem; }
+.about-grid, .events-grid, .speakers-grid { gap: 2.5rem; }
+.vm-card { padding: 2.5rem 2rem; }
+.section-header { margin-bottom: 5rem; }
