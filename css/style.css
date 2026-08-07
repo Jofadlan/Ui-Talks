@@ -464,12 +464,17 @@ section[id], header[id] {
 }
 
 /* SPEAKERS CARD SECTION (DARI GOOGLE SHEET) */
-.speakers-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 2rem;
-}
+.speakers-grid { display: flex; flex-direction: column; gap: 1.8rem; }
+.speaker-row { display: flex; justify-content: center; gap: 1.8rem; flex-wrap: wrap; }
+.speaker-row .speaker-card { width: 240px; flex: 0 0 auto; }
+.speaker-img-wrapper { height: 200px; }
+.speaker-info { text-align: center; padding: 1rem; }
+.speaker-info h3 { color: var(--accent-gold); font-size: 1.05rem; margin-bottom: 0.4rem; }
+.speaker-info p { font-size: 0.85rem; line-height: 1.4; color: var(--text-white); opacity: 0.85; }
 
+@media (max-width: 640px) {
+    .speaker-row .speaker-card { width: 100%; max-width: 300px; }
+}
 .speaker-card {
     background-color: var(--primary-light);
     border-radius: 10px;
@@ -524,54 +529,7 @@ section[id], header[id] {
     padding: 2rem;
 }
 
-/* GALLERY GRID SECTION
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.2rem;
-}
 
-.gallery-item {
-    border-radius: 10px;
-    overflow: hidden;
-    aspect-ratio: 4 / 3;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-    transition: var(--transition-fast);
-    position: relative;
-}
-
-.gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: var(--transition-fast);
-    cursor: pointer;
-}
-
-.gallery-item:hover img {
-    transform: scale(1.08);
-}
-
-.gallery-caption {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 0.8rem 1rem;
-    background: linear-gradient(0deg, rgba(0,0,0,0.75) 0%, transparent 100%);
-    opacity: 0;
-    transition: var(--transition-fast);
-}
-
-.gallery-item:hover .gallery-caption {
-    opacity: 1;
-}
-
-.gallery-caption p {
-    color: var(--text-white);
-    font-size: 0.85rem;
-    margin: 0;
-} */
 
 /* PARTNERS / SPONSORS SECTION */
 .partners-group {

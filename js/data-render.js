@@ -28,19 +28,19 @@ async function fetchCsvRows(url) {
 
 // 1. FUNGSI FETCH & RENDER SPEAKERS DARI GOOGLE SHEET
 async function loadGoogleSheetSpeakers() {
-    const container = document.getElementById('speaker-container');
-    if (!container) return;
+    const topRow = document.getElementById('speaker-row-top');
+    const bottomRow = document.getElementById('speaker-row-bottom');
+    if (!topRow || !bottomRow) return;
 
     try {
         const rows = await fetchCsvRows(SPREADSHEET_CSV_URL);
-
         const cards = rows
             .filter(cols => cols[0] && cols[0].trim() !== '')
+            .slice(0, 5)
             .map(cols => {
                 const nama = escapeHtml(cols[0]);
                 const jabatan = escapeHtml(cols[1]);
                 const fotoUrl = cols[2] && cols[2].trim() !== '' ? cols[2].trim() : FALLBACK_IMAGE;
-
                 return `
                     <div class="speaker-card">
                         <div class="speaker-img-wrapper">
@@ -54,15 +54,13 @@ async function loadGoogleSheetSpeakers() {
                 `;
             });
 
-        container.innerHTML = cards.length
-            ? cards.join('')
-            : `<div class="loading-text">Belum ada data pembicara.</div>`;
+        topRow.innerHTML = cards.slice(0, 3).join('') || `<div class="loading-text">Belum ada data pembicara.</div>`;
+        bottomRow.innerHTML = cards.slice(3, 5).join('');
     } catch (error) {
         console.error('Error fetching sheet data:', error);
-        container.innerHTML = `<div class="loading-text" style="color: #ff5a5f;">Gagal memuat data pembicara.</div>`;
+        topRow.innerHTML = `<div class="loading-text" style="color: #ff5a5f;">Gagal memuat data pembicara.</div>`;
     }
 }
-
 // 2. FUNGSI FETCH & RENDER EVENTS DARI GOOGLE SHEET
 // Kolom: [0] Nama, [1] Deskripsi, [2] Badge Tanggal, [3] Foto URL, [4] Accent (opsional)
 async function loadGoogleSheetEvents() {
