@@ -103,31 +103,26 @@ async function loadGoogleSheetEvents() {
 
 // 3. FUNGSI FETCH & RENDER GALLERY / MEMORIES DARI GOOGLE SHEET
 async function loadGoogleSheetGallery() {
-    const container = document.getElementById('gallery-container');
-    if (!container) return;
+    const topRow = document.getElementById('mem-top-row');
+    const bottomRow = document.getElementById('mem-bottom-row');
+    if (!topRow || !bottomRow) return;
 
     try {
         const rows = await fetchCsvRows(GALLERY_CSV_URL);
-
         const items = rows
             .filter(cols => cols[0] && cols[0].trim() !== '')
+            .slice(0, 7)
             .map((cols, index) => {
                 const fotoUrl = cols[0].trim();
                 const keterangan = escapeHtml(cols[1] || '');
-
-                return `
-                    <div class="memory-item">
-                        <img src="${fotoUrl}" alt="${keterangan || 'UI Talks Memory ' + (index + 1)}" loading="lazy" onerror="this.parentElement.style.display='none'">
-                    </div>
-                `;
+                return `<div class="memory-item"><img src="${fotoUrl}" alt="${keterangan || 'Memory ' + (index+1)}" loading="lazy" onerror="this.parentElement.style.display='none'"></div>`;
             });
 
-        container.innerHTML = items.length
-            ? items.join('')
-            : `<div class="loading-text">Belum ada foto galeri.</div>`;
+        topRow.innerHTML = items.slice(0, 3).join('') || `<div class="loading-text">Belum ada foto.</div>`;
+        bottomRow.innerHTML = items.slice(3, 7).join('');
     } catch (error) {
         console.error('Error gallery:', error);
-        container.innerHTML = `<div class="loading-text" style="color: #ff5a5f;">Gagal memuat galeri.</div>`;
+        topRow.innerHTML = `<div class="loading-text" style="color:#ff5a5f;">Gagal memuat galeri.</div>`;
     }
 }
 
