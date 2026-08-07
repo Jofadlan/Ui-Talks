@@ -416,25 +416,78 @@ section[id], header[id] {
 /* SUB-EVENTS CARD SECTION */
 .events-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
 }
+@media (max-width: 992px) { .events-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .events-grid { grid-template-columns: 1fr; } }
 
 .event-card {
     background-color: var(--primary-light);
-    padding: 2.5rem 2rem;
-    border-radius: 12px;
-    border-top: 5px solid var(--accent-gold); /* Default border accent */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     transition: var(--transition-fast);
+    display: flex;
+    flex-direction: column;
+}
+.event-card:hover { transform: translateY(-8px); box-shadow: 0 15px 35px rgba(0,0,0,0.35); }
+
+.event-photo-wrap {
     position: relative;
+    height: 180px;
+    overflow: hidden;
+}
+.event-photo-wrap img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+}
+.event-photo-wrap::after {
+    content: '';
+    position: absolute; left: 0; right: 0; bottom: 0; height: 70%;
+    background: linear-gradient(180deg, transparent 0%, var(--primary-light) 100%);
 }
 
-.event-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+.event-body {
+    padding: 0 1.5rem 1.8rem;
+    text-align: center;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.event-body h3 {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 800;
+    margin-bottom: 0.7rem;
+    text-transform: uppercase;
+}
+.event-body p {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+    flex: 1;
 }
 
+.event-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: var(--text-white);
+    background: none;
+    padding: 0;
+}
+.event-badge i {
+    width: 26px; height: 26px;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    font-size: 0.75rem;
+}
 /* Modifikasi warna border per sub-event biar mirip mockup */
 .event-card.accent-blue { border-top-color: #3a86ff; }
 .event-card.accent-orange { border-top-color: #ff5a5f; }
@@ -517,7 +570,6 @@ section[id], header[id] {
 }
 
 .speaker-info p {
-    color: var(--accent-gold);
     font-size: 0.9rem;
     font-weight: 500;
 }
