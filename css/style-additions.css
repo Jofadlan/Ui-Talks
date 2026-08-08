@@ -172,3 +172,56 @@
     .vm-vision-img { width: 100%; height: 200px; }
     .vm-collage { max-width: 400px; margin: 0 auto; }
 }
+/* ====== TAMBAHAN: BACKGROUND OVERRIDES ====== */
+
+/* About section - bg terang */
+#about {
+    background-color: #EFEAE3;
+    color: var(--primary-dark);
+}
+#about .about-text p,
+#about .about-label {
+    color: var(--primary-dark);
+    opacity: 0.85;
+}
+#about .about-text h2 {
+    color: var(--primary-dark);
+}
+
+/* Partners section - bg putih */
+#partners {
+    background-color: #ffffff;
+}
+#partners .section-header h2 {
+    color: var(--primary-dark);
+}
+
+/* Memories - bg image */
+#memories, .memories-section {
+    background-image: url('../assets/images/bg-memories.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: var(--primary-dark);
+}
+
+/* Background utama (body) */
+body {
+    position: relative;
+}
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(../assets/images/bg-main.png);
+    background-color: var(--primary-dark);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+    opacity: 0.08;
+    z-index: -1;
+    pointer-events: none;
+}

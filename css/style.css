@@ -231,7 +231,7 @@ section[id], header[id] {
     justify-content: center;
     text-align: center;
     padding: 0 1rem;
-    background: url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2070') no-repeat center center/cover;
+    background: url(../assets/images/hero.png) no-repeat center center/cover;
 }
 
 .hero-overlay {
