@@ -156,7 +156,7 @@
       <div class="about-grid">
         <div class="about-image">
           <img
-            src="https://dummyimage.com/600x450/c745c7/ffffff.png&text=Placeholder"
+            src="/assets/images/about.png"
             alt="About UI Talks"
             style="width: 100%; height: auto; border-radius: 12px"
           />
@@ -185,7 +185,7 @@
     </section>
 
     <!-- VISION & MISSION (mengikuti desain DCC) -->
-    <section class="section-container bg-light-section">
+    <section class="section-container bg-light-section vm-section">
       <p
         class="section-label-center"
         style="font-size: 2rem; color: var(--accent-gold); text-transform: none"
@@ -193,39 +193,15 @@
         Vision & Mission
       </p>
 
-      <div class="about-grid" style="align-items: center">
-        <div
-          style="display: flex; align-items: center; justify-content: center"
-        >
-          <div
-            style="
-              width: 100%;
-              max-width: 350px;
-              aspect-ratio: 4/3;
-              background: var(--primary-light);
-              border: 1px solid rgba(255, 159, 28, 0.3);
-              border-radius: 12px;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              color: var(--text-muted);
-              font-size: 1.1rem;
-            "
-          >
-            Place Holder
-          </div>
+      <div class="vm-top">
+        <div class="vm-frame vm-vision-img">
+          <img
+            src="/assets/images/vision.png"
+            alt="Vision"
+          />
         </div>
-        <div>
-          <h3
-            style="
-              color: var(--accent-gold);
-              font-family: var(--font-heading);
-              font-style: italic;
-              margin-bottom: 1rem;
-            "
-          >
-            Our Vision
-          </h3>
+        <div class="vm-vision-text">
+          <h3>Our Vision</h3>
           <p>
             Terwujudnya UI Talks 6.0 sebagai wadah untuk mendorong minat
             kewirausahaan generasi muda dalam menciptakan solusi bisnis yang
@@ -235,59 +211,46 @@
         </div>
       </div>
 
-      <div class="about-grid" style="align-items: center; margin-top: 3rem">
-        <div>
-          <h3
-            style="
-              color: var(--accent-gold);
-              font-family: var(--font-heading);
-              font-style: italic;
-              margin-bottom: 1rem;
-            "
-          >
-            Our Mission
-          </h3>
-          <ul
-            style="
-              list-style: none;
-              display: flex;
-              flex-direction: column;
-              gap: 0.8rem;
-            "
-          >
+      <div class="vm-bottom">
+        <div class="vm-mission-list">
+          <h3>Our Mission</h3>
+          <ul>
             <li>
-              • Menyediakan wadah pembelajaran yang interaktif dan relevan untuk
+              Menyediakan wadah pembelajaran yang interaktif dan relevan untuk
               meningkatkan pemahaman generasi muda mengenai kewirausahaan di era
               Society 5.0
             </li>
             <li>
-              • Mendorong pengembangan pola pikir kritis serta melahirkan
-              gagasan bisnis yang adaptif melalui rangkaian kegiatan edukatif,
+              Mendorong pengembangan pola pikir kritis serta melahirkan gagasan
+              bisnis yang adaptif melalui rangkaian kegiatan edukatif,
               kolaboratif, dan kompetitif
             </li>
             <li>
-              • Membekali peserta dengan pengetahuan dan keterampilan praktis
+              Membekali peserta dengan pengetahuan dan keterampilan praktis
               dalam merancang serta mengembangkan bisnis untuk menciptakan
               peluang pengembangan karir yang berdaya saing di dunia nyata.
             </li>
           </ul>
         </div>
-        <div class="mission-collage">
-          <img
-            class="mc-1"
-            src="https://dummyimage.com/300x200/0b4637/ffffff.png&text=Placeholder"
-            alt="Mission 1"
-          />
-          <img
-            class="mc-2"
-            src="https://dummyimage.com/300x200/0b4637/ffffff.png&text=Placeholder"
-            alt="Mission 2"
-          />
-          <img
-            class="mc-3"
-            src="https://dummyimage.com/300x400/0b4637/ffffff.png&text=Placeholder"
-            alt="Mission 3"
-          />
+        <div class="vm-collage">
+          <div class="vm-frame vm-c1">
+            <img
+              src="/assets/images/mission-1.png"
+              alt="Mission 1"
+            />
+          </div>
+          <div class="vm-frame vm-c2 vm-alt">
+            <img
+              src="/assets/images/mission-2.png"
+              alt="Mission 2"
+            />
+          </div>
+          <div class="vm-frame vm-c3 vm-alt">
+            <img
+              src="/assets/images/mission-3.png"
+              alt="Mission 3"
+            />
+          </div>
         </div>
       </div>
 
@@ -418,11 +381,11 @@
     </section>
 
     <!-- PARTNERS (foto gabungan, bukan per-logo) -->
-    <section id="partners" class="section-container bg-light-section">
+    <section id="partners" class="section-container bg-white-section">
       <div class="section-header"><h2>Past Sponsor</h2></div>
       <div class="partners-single">
         <img
-          src="https://dummyimage.com/1200x400/0b4637/ffffff.png&text=Sponsors+Collage"
+          src="/assets/images/past-sponsors.png"
           alt="Past Sponsors"
         />
       </div>
@@ -431,7 +394,7 @@
       </div>
       <div class="partners-single">
         <img
-          src="https://dummyimage.com/1200x400/0b4637/ffffff.png&text=Media+Partners+Collage"
+          src="/assets/images/past-media-partners.png"
           alt="Past Media & Community Partners"
         />
       </div>
@@ -470,13 +433,13 @@
             Universitas Indonesia, Depok, Indonesia.
           </p>
           <div class="footer-socials">
-            <a href="https://instagram.com/uitalks" target="_blank"
+            <a href="https://www.instagram.com/ui.talks" target="_blank"
               ><i class="fa-brands fa-instagram"></i
             ></a>
             <a href="#" target="_blank"
               ><i class="fa-brands fa-linkedin"></i
             ></a>
-            <a href="#" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="https://www.tiktok.com/@uitalks_" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
             <a href="#" target="_blank"><i class="fa-brands fa-youtube"></i></a>
           </div>
         </div>
