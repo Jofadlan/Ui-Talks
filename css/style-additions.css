@@ -225,3 +225,16 @@ body::before {
     z-index: -1;
     pointer-events: none;
 }
+.event-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    line-height: 1;
+}
+.event-badge i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
