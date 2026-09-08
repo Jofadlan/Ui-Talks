@@ -1,18 +1,17 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>UI Talks 6.0 - Adapt to Grow</title>
+    <meta name="description" content="UI Talks 6.0 — National Talkshow & National Business Competition by CEDS UI. Empowering Youth Entrepreneurship for a Smarter, Sustainable Society 5.0." />
+    <meta name="author" content="CEDS UI" />
+    <link rel="canonical" href="https://ui-talks.com/" />
     <link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/android-chrome-192x192.png" />
     <link rel="icon" type="image/png" sizes="512x512" href="/assets/icons/android-chrome-512x512.png" />
     <link rel="icon" type="image/x-icon" href="/assets/icons/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png" />
-    <link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/android-chrome-192x192.png" />
-    <link rel="icon" type="image/png" sizes="512x512" href="/assets/icons/android-chrome-512x512.png" />
-    <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" />
-    <link rel="manifest" href="/assets/icons/site.webmanifest" />
     <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" />
     <link rel="manifest" href="/assets/icons/site.webmanifest" />
 
@@ -70,16 +69,16 @@
           <li><a href="#events">Events</a></li>
           <li><a href="#partners">Partners</a></li>
         </ul>
-        <a href="https://linktr.ee/uitalks6" target="_blank" class="btn-cta-nav"
+        <a href="https://linktr.ee/uitalks6" target="_blank" rel="noopener noreferrer" class="btn-cta-nav"
           >Register Now</a
         >
-        <button class="menu-toggle" id="mobile-menu-btn">
+        <button class="menu-toggle" id="mobile-menu-btn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-drawer">
           <i class="fa-solid fa-bars"></i>
         </button>
       </div>
     </nav>
 
-    <div class="mobile-drawer" id="mobile-drawer">
+    <div class="mobile-drawer" id="mobile-drawer" aria-hidden="true">
       <ul class="mobile-nav-links">
         <li><a href="#home" class="mobile-nav-item">Home</a></li>
         <li><a href="#about" class="mobile-nav-item">About</a></li>
@@ -89,6 +88,7 @@
           <a
             href="https://linktr.ee/uitalks6"
             target="_blank"
+            rel="noopener noreferrer"
             class="mobile-btn-register"
             >Register Now</a
           >
@@ -119,6 +119,7 @@
           <a
             href="https://linktr.ee/uitalks6"
             target="_blank"
+            rel="noopener noreferrer"
             class="btn-primary"
             >Register Now <i class="fa-solid fa-arrow-right"></i
           ></a>
@@ -278,7 +279,7 @@
     <!-- EVENTS (dari Google Sheet) -->
     <section id="events" class="section-container bg-light-section">
       <div class="section-header">
-        <h2>OUR EVENTS</span></h2>
+        <h2>OUR EVENTS</h2>
         <p>
           A series of impactful activities designed to inspire, educate, and
           empower the next generation of changemakers.
@@ -449,10 +450,10 @@
   +62 898-9389-816 (Ale)
 </p>
           <div class="footer-socials">
-            <a href="https://www.instagram.com/ui.talks" target="_blank"
+            <a href="https://www.instagram.com/ui.talks" target="_blank" rel="noopener noreferrer" aria-label="Instagram"
               ><i class="fa-brands fa-instagram"></i
             ></a>
-            <a href="https://www.tiktok.com/@uitalks_" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="https://www.tiktok.com/@uitalks_" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
           </div>
         </div>
       </div>
@@ -461,29 +462,15 @@
       </div>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
-    <script src="/js/main.js"></script>
-    <script src="/js/data-render.js"></script>
-    <script>
-      function updateCountdown() {
-        const target = new Date("2026-10-03T00:00:00+07:00").getTime();
-        const diff = target - Date.now();
-        if (diff <= 0) return;
-        document.getElementById("cd-days").textContent = String(
-          Math.floor(diff / 86400000),
-        ).padStart(2, "0");
-        document.getElementById("cd-hours").textContent = String(
-          Math.floor((diff / 3600000) % 24),
-        ).padStart(2, "0");
-        document.getElementById("cd-minutes").textContent = String(
-          Math.floor((diff / 60000) % 60),
-        ).padStart(2, "0");
-        document.getElementById("cd-seconds").textContent = String(
-          Math.floor((diff / 1000) % 60),
-        ).padStart(2, "0");
-      }
-      updateCountdown();
-      setInterval(updateCountdown, 1000);
-    </script>
+    <noscript>
+      <div style="text-align:center;padding:2rem;color:#ff9f1c;background:#062c22;">
+        JavaScript diperlukan untuk menampilkan data events, speakers, dan gallery.
+      </div>
+    </noscript>
+
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script defer src="/js/countdown.js"></script>
+    <script defer src="/js/main.js"></script>
+    <script defer src="/js/data-render.js"></script>
   </body>
 </html>
