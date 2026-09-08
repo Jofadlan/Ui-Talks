@@ -67,7 +67,7 @@ async function loadGoogleSheetSpeakers() {
         return `
                     <div class="speaker-card">
                         <div class="speaker-img-wrapper">
-                            <img src="${escapeAttr(fotoUrl)}" alt="${nama}" loading="lazy" onerror="this.src='${escapeAttr(FALLBACK_IMAGE)}'">
+                            <img src="${escapeAttr(fotoUrl)}" alt="${nama}" width="240" height="280" loading="lazy" decoding="async" fetchpriority="low" onerror="this.src='${escapeAttr(FALLBACK_IMAGE)}'">
                         </div>
                         <div class="speaker-info">
                             <h3>${nama}</h3>
@@ -113,7 +113,7 @@ async function loadGoogleSheetEvents() {
         return `
     <div class="event-card">
         <div class="event-photo-wrap">
-            <img src="${escapeAttr(fotoUrl)}" alt="${nama}" loading="lazy" onerror="this.src='${escapeAttr(FALLBACK_IMAGE)}'">
+            <img src="${escapeAttr(fotoUrl)}" alt="${nama}" width="380" height="180" loading="lazy" decoding="async" fetchpriority="low" onerror="this.src='${escapeAttr(FALLBACK_IMAGE)}'">
         </div>
         <div class="event-body">
             <h3>${nama}</h3>
@@ -147,7 +147,7 @@ async function loadGoogleSheetGallery() {
       .map((cols, index) => {
         const fotoUrl = cols[0].trim();
         const keterangan = escapeHtml(cols[1] || "");
-        return `<div class="memory-item"><img src="${escapeAttr(fotoUrl)}" alt="${keterangan || "Memory " + (index + 1)}" loading="lazy" onerror="this.parentElement.style.display='none'"></div>`;
+        return `<div class="memory-item"><img src="${escapeAttr(fotoUrl)}" alt="${keterangan || "Memory " + (index + 1)}" width="300" height="200" loading="lazy" decoding="async" fetchpriority="low" onerror="this.parentElement.style.display='none'"></div>`;
       });
 
     topRow.innerHTML =

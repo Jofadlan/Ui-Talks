@@ -159,6 +159,19 @@
 }
 /* ====== TAMBAHAN: BACKGROUND OVERRIDES ====== */
 
+/* ====== IMAGE LAZY LOAD EFFECT ====== */
+.speaker-img-wrapper img,
+.event-photo-wrap img,
+.memory-item img {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+.speaker-img-wrapper img[src],
+.event-photo-wrap img[src],
+.memory-item img[src] {
+    opacity: 1;
+}
+
 /* About section - bg terang */
 #about {
     background-color: #EFEAE3;
