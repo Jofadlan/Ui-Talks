@@ -25,6 +25,9 @@
       property="og:image"
       content="https://ui-talks.com/assets/images/og-thumbnail.jpg"
     />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta
       property="og:url"
       content="https://ui-talks.com/"
@@ -44,6 +47,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://lh3.googleusercontent.com" crossorigin />
     <link rel="dns-prefetch" href="https://docs.google.com" />
+    <link rel="preload" as="image" href="/assets/images-webp/hero.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="/assets/images-webp/logo-uitalks.webp" fetchpriority="high">
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800&display=swap"
       rel="stylesheet"
@@ -59,11 +64,16 @@
     <nav class="navbar">
       <div class="nav-container">
         <a href="#home" class="nav-logo">
-          <img
-            src="/assets/images/logo-uitalks.png"
-            alt="UI Talks 6.0"
-            class="nav-logo-img"
-          />
+          <picture>
+            <source srcset="/assets/images-webp/logo-uitalks.webp" type="image/webp">
+            <img
+              src="/assets/images/logo-uitalks.png"
+              alt="UI Talks 6.0"
+              class="nav-logo-img"
+              width="160" height="40"
+              decoding="async"
+            />
+          </picture>
         </a>
         <ul class="nav-links">
           <li><a href="#home" class="nav-item">Home</a></li>
@@ -167,11 +177,18 @@
     <section id="about" class="section-container">
       <div class="about-grid">
         <div class="about-image">
-          <img
-            src="/assets/images/about.png"
-            alt="About UI Talks"
-            style="width: 100%; height: auto; border-radius: 12px"
-          />
+          <picture>
+            <source srcset="/assets/images-webp/about.webp" type="image/webp">
+            <img
+              src="/assets/images/about.png"
+              alt="About UI Talks"
+              width="540" height="405"
+              loading="lazy"
+              decoding="async"
+              fetchpriority="low"
+              style="width: 100%; height: auto; border-radius: 12px"
+            />
+          </picture>
         </div>
         <div class="about-text">
           <p class="about-label">About</p>
@@ -207,10 +224,16 @@
 
       <div class="vm-top">
         <div class="vm-frame vm-vision-img">
-          <img
-            src="/assets/images/vision.png"
-            alt="Vision"
-          />
+          <picture>
+            <source srcset="/assets/images-webp/vision.webp" type="image/webp">
+            <img
+              src="/assets/images/vision.png"
+              alt="Vision"
+              width="300" height="170"
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
         </div>
         <div class="vm-vision-text">
           <h3>Our Vision</h3>
@@ -246,22 +269,40 @@
         </div>
         <div class="vm-collage">
           <div class="vm-frame vm-c1">
-            <img
-              src="/assets/images/mission-1.png"
-              alt="Mission 1"
-            />
+            <picture>
+              <source srcset="/assets/images-webp/mission-1.webp" type="image/webp">
+              <img
+                src="/assets/images/mission-1.png"
+                alt="Mission 1"
+                width="200" height="130"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
           </div>
           <div class="vm-frame vm-c2 vm-alt">
-            <img
-              src="/assets/images/mission-2.png"
-              alt="Mission 2"
-            />
+            <picture>
+              <source srcset="/assets/images-webp/mission-2.webp" type="image/webp">
+              <img
+                src="/assets/images/mission-2.png"
+                alt="Mission 2"
+                width="200" height="270"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
           </div>
           <div class="vm-frame vm-c3 vm-alt">
-            <img
-              src="/assets/images/mission-3.png"
-              alt="Mission 3"
-            />
+            <picture>
+              <source srcset="/assets/images-webp/mission-3.webp" type="image/webp">
+              <img
+                src="/assets/images/mission-3.png"
+                alt="Mission 3"
+                width="200" height="130"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
           </div>
         </div>
       </div>
@@ -396,19 +437,33 @@
     <section id="partners" class="section-container bg-white-section">
       <div class="section-header"><h2>Past Sponsor</h2></div>
       <div class="partners-single">
-        <img
-          src="/assets/images/past-sponsors.png"
-          alt="Past Sponsors"
-        />
+        <picture>
+          <source srcset="/assets/images-webp/past-sponsors.webp" type="image/webp">
+          <img
+            src="/assets/images/past-sponsors.png"
+            alt="Past Sponsors"
+            width="1060" height="400"
+            loading="lazy"
+            decoding="async"
+            fetchpriority="low"
+          />
+        </picture>
       </div>
       <div class="section-header" style="margin-top: 3rem">
         <h2>Past Media & Community Partner</h2>
       </div>
       <div class="partners-single">
-        <img
-          src="/assets/images/past-media-partners.png"
-          alt="Past Media & Community Partners"
-        />
+        <picture>
+          <source srcset="/assets/images-webp/past-media-partners.webp" type="image/webp">
+          <img
+            src="/assets/images/past-media-partners.png"
+            alt="Past Media & Community Partners"
+            width="1060" height="400"
+            loading="lazy"
+            decoding="async"
+            fetchpriority="low"
+          />
+        </picture>
       </div>
     </section>
 

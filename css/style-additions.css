@@ -196,7 +196,7 @@
 
 /* Memories - bg image */
 #memories, .memories-section {
-    background-image: url('../assets/images/bg-memories.png');
+    background-image: url('../assets/images-webp/bg-memories.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -214,7 +214,7 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url(../assets/images/bg-main.png);
+    background-image: url(../assets/images-webp/bg-main.webp);
     background-color: var(--primary-dark);
     background-size: cover;
     background-repeat: no-repeat;
