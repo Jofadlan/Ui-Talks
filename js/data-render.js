@@ -20,13 +20,32 @@ function escapeHtml(str) {
   return div.innerHTML;
 }
 
+// Escape untuk atribut HTML (mencegah XSS di src, href, dll)
+function escapeAttr(str) {
+  return String(str ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
 // Helper generik: fetch CSV -> parsed rows (pakai PapaParse, jadi aman walau ada koma di dalam data)
 async function fetchCsvRows(url) {
-  const response = await fetch(url);
-  if (!response.ok) throw new Error("Network response was not ok");
-  const rawData = await response.text();
-  const parsed = Papa.parse(rawData.trim(), { skipEmptyLines: true });
-  return parsed.data.slice(1); // buang header row
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 10000);
+  try {
+    const response = await fetch(url, { signal: controller.signal });
+    if (!response.ok) throw new Error("Network response was not ok");
+    const rawData = await response.text();
+    const parsed = Papa.parse(rawData.trim(), { skipEmptyLines: true });
+    if (parsed.errors.length > 0) {
+      console.warn("CSV parse warnings:", parsed.errors);
+    }
+    return parsed.data.slice(1);
+  } finally {
+    clearTimeout(timeout);
+  }
 }
 
 // 1. FUNGSI FETCH & RENDER SPEAKERS DARI GOOGLE SHEET
@@ -48,7 +67,7 @@ async function loadGoogleSheetSpeakers() {
         return `
                     <div class="speaker-card">
                         <div class="speaker-img-wrapper">
-                            <img src="${fotoUrl}" alt="${nama}" loading="lazy" onerror="this.src='${FALLBACK_IMAGE}'">
+                            <img src="${escapeAttr(fotoUrl)}" alt="${nama}" width="240" height="280" loading="lazy" decoding="async" fetchpriority="low" onerror="this.src='${escapeAttr(FALLBACK_IMAGE)}'">
                         </div>
                         <div class="speaker-info">
                             <h3>${nama}</h3>
@@ -64,7 +83,9 @@ async function loadGoogleSheetSpeakers() {
     bottomRow.innerHTML = cards.slice(3, 5).join("");
   } catch (error) {
     console.error("Error fetching sheet data:", error);
-    topRow.innerHTML = `<div class="loading-text" style="color: #ff5a5f;">Gagal memuat data pembicara.</div>`;
+    const errorMsg = `<div class="loading-text" style="color: #ff5a5f;">Gagal memuat data pembicara.</div>`;
+    topRow.innerHTML = errorMsg;
+    bottomRow.innerHTML = "";
   }
 }
 // 2. FUNGSI FETCH & RENDER EVENTS DARI GOOGLE SHEET
@@ -92,7 +113,7 @@ async function loadGoogleSheetEvents() {
         return `
     <div class="event-card">
         <div class="event-photo-wrap">
-            <img src="${fotoUrl}" alt="${nama}" loading="lazy" onerror="this.src='${FALLBACK_IMAGE}'">
+            <img src="${escapeAttr(fotoUrl)}" alt="${nama}" width="380" height="180" loading="lazy" decoding="async" fetchpriority="low" onerror="this.src='${escapeAttr(FALLBACK_IMAGE)}'">
         </div>
         <div class="event-body">
             <h3>${nama}</h3>
@@ -126,7 +147,7 @@ async function loadGoogleSheetGallery() {
       .map((cols, index) => {
         const fotoUrl = cols[0].trim();
         const keterangan = escapeHtml(cols[1] || "");
-        return `<div class="memory-item"><img src="${fotoUrl}" alt="${keterangan || "Memory " + (index + 1)}" loading="lazy" onerror="this.parentElement.style.display='none'"></div>`;
+        return `<div class="memory-item"><img src="${escapeAttr(fotoUrl)}" alt="${keterangan || "Memory " + (index + 1)}" width="300" height="200" loading="lazy" decoding="async" fetchpriority="low" onerror="this.parentElement.style.display='none'"></div>`;
       });
 
     topRow.innerHTML =
@@ -135,7 +156,9 @@ async function loadGoogleSheetGallery() {
     bottomRow.innerHTML = items.slice(3, 7).join("");
   } catch (error) {
     console.error("Error gallery:", error);
-    topRow.innerHTML = `<div class="loading-text" style="color:#ff5a5f;">Gagal memuat galeri.</div>`;
+    const errorMsg = `<div class="loading-text" style="color:#ff5a5f;">Gagal memuat galeri.</div>`;
+    topRow.innerHTML = errorMsg;
+    bottomRow.innerHTML = "";
   }
 }
 

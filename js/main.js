@@ -20,17 +20,19 @@ function initMobileMenu() {
     const drawerLinks = drawer.querySelectorAll('.mobile-nav-item');
 
     menuBtn.addEventListener('click', () => {
-        drawer.classList.toggle('open');
+        const isOpen = drawer.classList.toggle('open');
         const icon = menuBtn.querySelector('i');
-        icon.className = drawer.classList.contains('open')
-            ? 'fa-solid fa-xmark'
-            : 'fa-solid fa-bars';
+        icon.className = isOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+        menuBtn.setAttribute('aria-expanded', String(isOpen));
+        drawer.setAttribute('aria-hidden', String(!isOpen));
     });
 
     drawerLinks.forEach(link => {
         link.addEventListener('click', () => {
             drawer.classList.remove('open');
             menuBtn.querySelector('i').className = 'fa-solid fa-bars';
+            menuBtn.setAttribute('aria-expanded', 'false');
+            drawer.setAttribute('aria-hidden', 'true');
         });
     });
 }
@@ -135,9 +137,20 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollReveal();
 });
 
+let scrollTicking = false;
 window.addEventListener('scroll', () => {
-    handleNavbarScroll();
-    syncNavbarHeight();
+    if (!scrollTicking) {
+        requestAnimationFrame(() => {
+            handleNavbarScroll();
+            syncNavbarHeight();
+            scrollTicking = false;
+        });
+        scrollTicking = true;
+    }
 });
 
-window.addEventListener('resize', syncNavbarHeight);
+let resizeTimer;
+window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(syncNavbarHeight, 150);
+});
