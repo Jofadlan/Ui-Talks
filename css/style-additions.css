@@ -85,11 +85,31 @@
 .about-grid { gap: 4rem; }
 .events-grid { gap: 2.5rem; }
 
+/* Events section - tambah jarak antara header dan grid */
+#events .section-header {
+    margin-bottom: 3.5rem;
+}
+
 @media (min-width: 1400px) {
     .section-container { max-width: 1140px; }
 }
 .vm-card { padding: 2.5rem 2rem; }
 .section-header { margin-bottom: 5rem; }
+
+/* Countdown section */
+.countdown-section .section-header {
+    margin-bottom: 3rem;
+}
+.countdown-section .vm-card {
+    padding: 2rem 3rem;
+}
+.countdown-section .vm-card h3 {
+    font-size: 2rem;
+    line-height: 1.2;
+}
+.countdown-section .vm-card p {
+    font-size: 0.9rem;
+}
 
 
 /* ====== VISION & MISSION (asymmetric frame ala DCC) ====== */
